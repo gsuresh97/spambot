@@ -1,0 +1,16 @@
+import sys
+import imaplib
+import email
+import datetime
+
+M = imaplib.IMAP4SSL('imap.gmail.com')
+
+try:
+    M.login("johndoe52541", "jiminycricket")
+except imaplib.IMAP4.error:
+    print "LOGIN FAILED!!!"
+
+rv, mailboxes = M.list()
+if rv == 'OK':
+    print "Mailboxes:"
+    print mailboxes
