@@ -37,3 +37,18 @@ def getMarvelData():
 
     return "Name = %s\nDescription = %s\nimg path = %s" %(name, description, img_path)
 
+def emailFormat():
+    s = getMarvelData()
+    out = "Hello:\nShould you choose to accept this mission, you will find the below information of great interest.\n"
+    n = 0
+    for letter in s:
+        out += letter
+        if letter == '\n':
+            n+=1
+        if n == 2:
+            out += "Below I have opened my Western Union account. Please forward the funds here. Good luck, and may Thor be with you.\n"
+            continue
+    return out    
+
+
+print(emailFormat())
