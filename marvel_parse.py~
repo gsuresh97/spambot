@@ -27,8 +27,9 @@ def getCharacterData(characterID):
     data = json.loads(resp.text)
     return data
 
-# this is the function to call
-def getMarvelData():
+
+
+def main():
     json_data = getCharacterData(1009368)
     results = json_data["data"]["results"][0]
     name = results["name"]
@@ -36,4 +37,7 @@ def getMarvelData():
     img_path = results["thumbnail"]["path"] + "." + results["thumbnail"]["extension"]
 
     return "Name = %s\nDescription = %s\nimg path = %s" %(name, description, img_path)
+ 
+if __name__ == "__main__":
+    print(main())
 
