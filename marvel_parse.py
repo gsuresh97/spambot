@@ -36,8 +36,8 @@ def main():
     description = results["description"]
     img_path = results["thumbnail"]["path"] + "." + results["thumbnail"]["extension"]
 
-    print("Name = %s\nDescription = %s\nimg path = %s" %(name, description, img_path))
+    return "Name = %s\nDescription = %s\nimg path = %s" %(name, description, img_path)
  
 if __name__ == "__main__":
-    main()   
+    print(main())
 
