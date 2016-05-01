@@ -12,6 +12,8 @@ import random
 from random import shuffle
 
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 EMAIL_ACCOUNT = "johndoe3451@yahoo.com"
 EMAIL_FOLDER = "Bulk Mail"
@@ -20,6 +22,7 @@ apiKey = "a116c36fab7472b082b231386809a3cc";
 privateKey = "cf264aec6c9964ba8b5bb55929f55a9bfe1bf3f0";
 id_arr = [1009368, 1009351, 1009610, 1009547, 1009220, 1009664, 1009629, 1009356, 1009366, 1009662, 1009175, 1009257, 1009310, 1009313, 1009362, 1009496, 1009381, 1009508, 1009472, 1009476, 1009512, 1009546, 1009718, 1009722, 1010735, 1010763, 1010743, 1010744]
 
+msg = MIMEMultipart('alternative')
 
 def hashFunction(time):
     preHash = str(time) + privateKey + apiKey
@@ -105,10 +108,12 @@ def emailFormat():
     msg = base
 
     question = q1(description, name)
+    msg += question
 
-    return msg + question + "\n"
-
-
+    msg += "\n\n" + "Yours truly."
+    msg += "\n" + img_path
+    print(msg)
+    return msg
 
 def process_mailbox(M):    
     rv, data = M.search(None, "ALL")
@@ -134,6 +139,7 @@ def process_mailbox(M):
         print 'Message %s: %s' % (num, subject)
         print 'Raw Date:', msg['Date']
         sender = msg['From']
+        msg_mime = MIMEMultipart('alternative')
         if sender:
             msgb = "\r\n".join([
                 "From: johndoe52541@gmail.com",
