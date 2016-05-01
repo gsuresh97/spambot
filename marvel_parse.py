@@ -4,10 +4,11 @@ import json
 import requests
 import hashlib
 import time
+import random
 
 apiKey = "a116c36fab7472b082b231386809a3cc";
 privateKey = "cf264aec6c9964ba8b5bb55929f55a9bfe1bf3f0";
-#id_arr = [1009368, 
+id_arr = [1009368, 1009351, 1009610, 1009547]
 
 
 def hashFunction(time):
@@ -29,25 +30,30 @@ def getCharacterData(characterID):
 
 # this is the function to call
 def getMarvelData():
-    json_data = getCharacterData(1009368)
+    
+    rand = int(random.random()*len(id_arr))
+    
+    json_data = getCharacterData(id_arr[rand])
     results = json_data["data"]["results"][0]
     name = results["name"]
     description = results["description"]
     img_path = results["thumbnail"]["path"] + "." + results["thumbnail"]["extension"]
-
-    return "Name = %s\nDescription = %s\nimg path = %s" %(name, description, img_path)
+    
+    return (name, description, img_path)
 
 def emailFormat():
-    s = getMarvelData()
-    out = "Hello:\nShould you choose to accept this mission, you will find the below information of great interest.\n"
+    name, description, img_path = getMarvelData()
+    print(name)
+    out = "Hello:\n\n It is with great pleasure that I present you with a very important task.\nShould you choose to accept this mission, you will find the below information of great interest to you:\n\n"
     n = 0
-    for letter in s:
-        out += letter
-        if letter == '\n':
-            n+=1
-        if n == 2:
-            out += "Below I have opened my Western Union account. Please forward the funds here. Good luck, and may Thor be with you.\n"
-            n+=1
+#    for letter in s:
+#        out += letter
+#        if letter == '\n':
+#            n+=1
+#            out += '\n'
+#        if n == 2:
+#            out += "Below I have opened my Western Union account. Please forward the funds here. Good luck, and may Thor be with you.\n\n"
+#            n+=1                
     return out    
 
 
