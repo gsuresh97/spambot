@@ -47,7 +47,7 @@ def emailFormat():
             n+=1
         if n == 2:
             out += "Below I have opened my Western Union account. Please forward the funds here. Good luck, and may Thor be with you.\n"
-            continue
+            n+=1
     return out    
 
 
