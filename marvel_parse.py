@@ -97,8 +97,9 @@ def emailFormat():
     msg = base
 
     question = q1(description, name)
+    msg += question
 
-    return msg + question + "\n"
+    return msg + "\n\n" + "Yours <a href=\"" + img_path + "\">truly</a>."
 
 
 print(emailFormat())
